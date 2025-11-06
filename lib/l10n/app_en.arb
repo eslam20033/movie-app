@@ -1,0 +1,67 @@
+{
+    "@@locale": "en",
+
+    "onboardingTitle1": "Find Your Next Favorite Movie Here",
+    "onboardingSubtitle1": "Get access to a huge library of movies to suit all tastes. You will surely like it.",
+    "exploreNow": "Explore Now",
+
+    "onboardingTitle2": "Discover Movies",
+    "onboardingSubtitle2": "Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.",
+    "next": "Next",
+
+    "onboardingTitle3": "Explore All Genres",
+    "onboardingSubtitle3": "Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.",
+
+    "onboardingTitle4": "Create Watchlists",
+    "onboardingSubtitle4": "Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.",
+
+    "onboardingTitle5": "Rate, Review, and Learn",
+    "onboardingSubtitle5": "Share your thoughts on the movies you've watched. Dive deep into film details and help others discover great movies with your reviews.",
+    
+    "startWatchingNow": "Start Watching Now",
+    "finish": "Finish",
+    "back": "Back",
+    
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "forgetPassword": "Forget Password?",
+    "dontHaveAccount": "Don't Have Account? ",
+    "createOne": "Create One",
+    "or": "OR",
+    "loginWithGoogle": "Login With Google",
+    
+    "register": "Register",
+    "avatar": "Avatar",
+    "name": "Name",
+    "confirmPassword": "Confirm Password",
+    "phoneNumber": "Phone Number",
+    "createAccount": "Create Account",
+    "alreadyHaveAccount": "Already Have Account? ",
+    
+    "forgetPasswordTitle": "Forget Password",
+    "verifyEmail": "Verify Email",
+    
+    "availableNow": "Available Now",
+    "watchNow": "Watch Now",
+    "action": "Action",
+    "adventure": "Adventure",
+    "animation": "Animation",
+    "biography": "Biography",
+    "seeMore": "See More",
+    "watch": "Watch",
+    "screenShots": "Screen Shots",
+    
+    "search": "Search",
+    
+    "wishList": "Wish List",
+    "history": "History",
+    "editProfile": "Edit Profile",
+    "exit": "Exit",
+    "watchList": "Watch List",
+    
+    "resetPassword": "Reset Password",
+    "deleteAccount": "Delete Account",
+    "updateData": "Update Data",
+    "pickAvatar": "Pick Avatar"
+}

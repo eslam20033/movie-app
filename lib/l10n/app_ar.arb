@@ -1,0 +1,67 @@
+{
+    "@@locale": "ar",
+
+    "onboardingTitle1": "ابحث عن فيلمك المفضل التالي هنا",
+    "onboardingSubtitle1": "احصل على مكتبة ضخمة من الأفلام تناسب جميع الأذواق. بالتأكيد ستعجبك.",
+    "exploreNow": "استكشف الآن",
+
+    "onboardingTitle2": "اكتشف الأفلام",
+    "onboardingSubtitle2": "استكشف مجموعة واسعة من الأفلام بجميع الجودات والأنواع. اعثر على فيلمك المفضل التالي بسهولة.",
+    "next": "التالي",
+
+    "onboardingTitle3": "استكشف جميع الأنواع",
+    "onboardingSubtitle3": "اكتشف أفلامًا من كل نوع، بجميع الجودات المتاحة. ابحث عن شيء جديد ومثير لمشاهدته كل يوم.",
+
+    "onboardingTitle4": "أنشئ قوائم مشاهدة",
+    "onboardingSubtitle4": "احفظ الأفلام في قائمة المشاهدة الخاصة بك لتتبع ما تريد مشاهدته لاحقًا. استمتع بالأفلام بجودات وأنواع مختلفة.",
+
+    "onboardingTitle5": "قيّم، راجع، وتعلّم",
+    "onboardingSubtitle5": "شارك أفكارك حول الأفلام التي شاهدتها. تعمق في تفاصيل الفيلم وساعد الآخرين على اكتشاف أفلام رائعة من خلال مراجعاتك.",
+
+    "startWatchingNow": "ابدأ المشاهدة الآن",
+    "finish": "إنهاء",
+    "back": "رجوع",
+    
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgetPassword": "نسيت كلمة المرور؟",
+    "dontHaveAccount": "ليس لديك حساب؟ ",
+    "createOne": "أنشئ واحد",
+    "or": "أو",
+    "loginWithGoogle": "الدخول بحساب جوجل",
+    
+    "register": "إنشاء حساب",
+    "avatar": "الصورة الرمزية",
+    "name": "الاسم",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "phoneNumber": "رقم الهاتف",
+    "createAccount": "إنشاء حساب",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟ ",
+    
+    "forgetPasswordTitle": "نسيت كلمة المرور",
+    "verifyEmail": "التحقق من البريد",
+    
+    "availableNow": "متوفر الآن",
+    "watchNow": "شاهد الآن",
+    "action": "أكشن",
+    "adventure": "مغامرة",
+    "animation": "رسوم متحركة",
+    "biography": "سيرة ذاتية",
+    "seeMore": "عرض المزيد",
+    "watch": "مشاهدة",
+    "screenShots": "لقطات الشاشة",
+    
+    "search": "بحث",
+    
+    "wishList": "قائمة الأماني",
+    "history": "السجل",
+    "editProfile": "تعديل الملف الشخصي",
+    "exit": "خروج",
+    "watchList": "قائمة المشاهدة",
+    
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "deleteAccount": "حذف الحساب",
+    "updateData": "تحديث البيانات",
+    "pickAvatar": "اختر صورة رمزية"
+}

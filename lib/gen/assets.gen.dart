@@ -156,8 +156,21 @@ class $AssetsImagesGen {
   AssetGenImage get watchNow =>
       const AssetGenImage('assets/images/Watch Now.png');
 
+  /// File path: assets/images/movieImage.png
+  AssetGenImage get movieImage =>
+      const AssetGenImage('assets/images/movieImage.png');
+
+  /// File path: assets/images/pobcornImage.png
+  AssetGenImage get pobcornImage =>
+      const AssetGenImage('assets/images/pobcornImage.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [availableNow, watchNow];
+  List<AssetGenImage> get values => [
+    availableNow,
+    watchNow,
+    movieImage,
+    pobcornImage,
+  ];
 }
 
 class $AssetsOnbordingGen {

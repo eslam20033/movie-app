@@ -3,16 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/dio_helper.dart';
 import 'package:flutter_application_1/core/provider/app_provider.dart';
 import 'package:flutter_application_1/core/routes/app_routes.dart';
-import 'package:flutter_application_1/features/auth/forget/forget_password_screen.dart';
-import 'package:flutter_application_1/features/auth/login/login_screen.dart';
-import 'package:flutter_application_1/features/auth/register/register_screen.dart';
-import 'package:flutter_application_1/features/home/home_tab_view.dart';
+import 'package:flutter_application_1/core/theme/app_theme.dart';
 import 'package:flutter_application_1/features/main_layout.dart';
-import 'package:flutter_application_1/features/onboarding/onboarding_screen.dart';
-import 'package:flutter_application_1/features/splash/splash_screen.dart';
 import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-
 import 'firebase_options.dart';
 
 void main() async {
@@ -35,6 +29,7 @@ class MyApp extends StatelessWidget {
     final appProvider = Provider.of<AppProvider>(context);
 
     return MaterialApp(
+      theme: AppTheme.themeOfApp,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.mainLayoutRoute,
       routes: {

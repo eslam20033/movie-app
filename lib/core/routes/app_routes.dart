@@ -6,4 +6,5 @@ class AppRoutes {
   static const String forgetPasswordRoute = '/forget-password';
   static const String mainLayoutRoute = '/mainLayout';
   static const String homeRoute = '/home';
+  static const String routeName = '/searchTab';
 }

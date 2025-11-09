@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_application_1/core/theme/app_colors.dart';
-import 'package:flutter_application_1/features/home/home_tab_view.dart';
-
+import 'package:flutter_application_1/features/tabs/home/home_tab_view.dart';
+import 'package:flutter_application_1/features/tabs/search/search_tab_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../gen/assets.gen.dart';
 
 class MainLayout extends StatefulWidget {
@@ -16,7 +14,7 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
-  List<Widget> tabs = [HomeTabView(), Container(), Container(), Container()];
+  List<Widget> tabs = [HomeTabView(), SearchTab(), Container(), Container()];
 
   @override
   Widget build(BuildContext context) {

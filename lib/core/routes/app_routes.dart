@@ -8,4 +8,6 @@ class AppRoutes {
   static const String homeRoute = '/home';
   static const String searchTab = '/searchTab';
   static const String browseTab = '/browseTab';
+  static const String profileTab = '/profileTab';
+  static const String editProfileScreen = '/editProfileScreen';
 }

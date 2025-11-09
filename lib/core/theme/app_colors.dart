@@ -8,6 +8,7 @@ class AppColors {
   static const Color greyColor = Color(0xFF282A28);
   static const Color lightTextColor = Colors.white70;
   static Color blackColor = Color(0xff121312);
+  static Color redColor = Color(0xffE82626);
 }
 /* 
 F6BD00

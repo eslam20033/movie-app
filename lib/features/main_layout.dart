@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
 import 'package:flutter_application_1/features/tabs/browse/browse_tab.dart';
 import 'package:flutter_application_1/features/tabs/home/home_tab_view.dart';
+import 'package:flutter_application_1/features/tabs/profile/profile_tab.dart';
 import 'package:flutter_application_1/features/tabs/search/search_tab_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../gen/assets.gen.dart';
@@ -15,7 +16,7 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
-  List<Widget> tabs = [HomeTabView(), SearchTab(), BrowseTab(), Container()];
+  List<Widget> tabs = [HomeTabView(), SearchTab(), BrowseTab(), ProfileTab()];
 
   @override
   Widget build(BuildContext context) {

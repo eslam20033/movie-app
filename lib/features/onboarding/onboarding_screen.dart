@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/routes/app_routes.dart';
+import '../../gen/assets.gen.dart';
 
 class OnboardingItem {
   final String image;
@@ -23,38 +24,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingItem> _items = [
     OnboardingItem(
-      image: 'assets/onbording/Movies Posters Group.png',
+      image: Assets.onbording.onBoarding1.path,
       title: 'Find Your Next Favorite Movie Here',
       subtitle:
           'Get access to a huge library of movies to suit all tastes. You will surely like it.',
     ),
     OnboardingItem(
-      image: 'assets/onbording/xl_848228_477d9240 1.png',
+      image: Assets.onbording.onBoarding2.path,
       title: 'Discover Movies',
       subtitle:
           'Explore a vast collection of movies in all qualities and genres. Find your next favorite film with ease.',
     ),
     OnboardingItem(
-      image: 'assets/onbording/The Godfather 1.png',
+      image: Assets.onbording.onBoarding3.path,
       title: 'Explore All Genres',
       subtitle:
           'Discover movies from every genre, in all available qualities. Find something new and exciting to watch every day.',
     ),
     OnboardingItem(
-      image: 'assets/onbording/xl_bad-boys-ride-or-die-movie-poster_591dcde0 1.png',
+      image: Assets.onbording.onBoarding4.path,
       title: 'Create Watchlists',
       subtitle:
           'Save movies to your watchlist to keep track of what you want to watch next. Enjoy films in various qualities and genres.',
     ),
     OnboardingItem(
-      image: 'assets/onbording/xl_9419884_887ed6c7 1.png',
+      image: Assets.onbording.onBoarding5.path,
       title: 'Rate, Review, and Learn',
       subtitle:
           'Share your thoughts on the movies you ve watched. Dive deep into film details and help others discover great movies with your reviews.',
     ),
     OnboardingItem(
-      image:
-          'assets/onbording/1917_-_Sam_Mendes_-_Hollywood_War_Film_Classic_English_Movie_Poster_9ef86295-4756-4c71-bb4e-20745c5fbc1a 1.png',
+      image: Assets.onbording.onBoarding6.path,
+
       title: 'Start Watching Now',
     ),
   ];
@@ -66,7 +67,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _nextPage() {
-    _pageController.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    _pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 
   void _previousPage() {
@@ -126,7 +130,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Text(
                       _items[_currentPageIndex].subtitle!,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 16, color: Colors.white70),
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white70,
+                      ),
                     ),
                   ],
                   const SizedBox(height: 30),
@@ -143,7 +150,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget buildPage(OnboardingItem item) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(item.image), fit: BoxFit.cover),
+        image: DecorationImage(
+          image: AssetImage(item.image),
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -185,7 +195,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ElevatedButton(style: filledButtonStyle, onPressed: _nextPage, child: const Text('Next')),
+          ElevatedButton(
+            style: filledButtonStyle,
+            onPressed: _nextPage,
+            child: const Text('Next'),
+          ),
           const SizedBox(height: 12),
           OutlinedButton(
             style: backButtonStyle,

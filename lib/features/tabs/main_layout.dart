@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
-import 'package:flutter_application_1/features/tabs/browse/browse_tab.dart';
-import 'package:flutter_application_1/features/tabs/home/home_tab_view.dart';
-import 'package:flutter_application_1/features/tabs/profile/profile_tab.dart';
-import 'package:flutter_application_1/features/tabs/search/search_tab_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../gen/assets.gen.dart';
+import '../../gen/assets.gen.dart';
+import '../movies/presentation/view/browse/browse_tab.dart';
+import '../movies/presentation/view/home/home_tab_view.dart';
+import '../movies/presentation/view/profile/profile_tab.dart';
+import '../movies/presentation/view/search/search_tab_view.dart';
 
 class MainLayout extends StatefulWidget {
   MainLayout({super.key});

@@ -29,99 +29,41 @@ class _SearchTabState extends State<SearchTab> {
               if (state is MovieInitial) {
                 return Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomTextFormField(
-                        controller: _searchController,
-                        hintText: "Search For Movie",
-                        prefixIconWidget: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(Assets.icon.search),
-                        ),
-                        filledColor: AppColors.greyColor,
-                        onFieldSubmitted: (value) {
-                          context.read<MovieCubit>().getSearchOnMovies(
-                            search: value,
-                          );
-                        },
+                    _buildSearch(context),
+                    Expanded(
+                      child: Center(
+                        child: Image.asset(Assets.images.pobcornImage.path),
                       ),
                     ),
-                    Expanded(child: Center(child: Image.asset(Assets.images.pobcornImage.path))),
                   ],
                 );
               } else if (state is MovieLoadingState) {
-              return  Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomTextFormField(
-                      controller: _searchController,
-                      hintText: "Search For Movie",
-                      prefixIconWidget: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: SvgPicture.asset(Assets.icon.search),
-                      ),
-                      filledColor: AppColors.greyColor,
-                      onFieldSubmitted: (value) {
-                        context.read<MovieCubit>().getSearchOnMovies(
-                          search: value,
-                        );
-                      },
+                return Column(
+                  children: [
+                    _buildSearch(context),
+                    Expanded(
+                      child: const Center(child: CircularProgressIndicator()),
                     ),
-                  ),
-                  Expanded(child: const Center(child: CircularProgressIndicator())),
-                ],
-              );
+                  ],
+                );
               } else if (state is MovieEmptyState) {
-               return Column(
-                 children: [
-                   Padding(
-                     padding: const EdgeInsets.all(8.0),
-                     child: CustomTextFormField(
-                       controller: _searchController,
-                       hintText: "Search For Movie",
-                       prefixIconWidget: Padding(
-                         padding: const EdgeInsets.all(10.0),
-                         child: SvgPicture.asset(Assets.icon.search),
-                       ),
-                       filledColor: AppColors.greyColor,
-                       onFieldSubmitted: (value) {
-                         context.read<MovieCubit>().getSearchOnMovies(
-                           search: value,
-                         );
-                       },
-                     ),
-                   ),
-                   Expanded(
-                     child: Center(
+                return Column(
+                  children: [
+                    _buildSearch(context),
+                    Expanded(
+                      child: Center(
                         child: Text(
                           state.message,
                           style: TextStyle(color: AppColors.yellowColor),
                         ),
                       ),
-                   ),
-                 ],
-               );
-              }else if(state is SearchSuccessState){
+                    ),
+                  ],
+                );
+              } else if (state is SearchSuccessState) {
                 return Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CustomTextFormField(
-                        controller: _searchController,
-                        hintText: "Search For Movie",
-                        prefixIconWidget: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: SvgPicture.asset(Assets.icon.search),
-                        ),
-                        filledColor: AppColors.greyColor,
-                        onFieldSubmitted: (value) {
-                          context.read<MovieCubit>().getSearchOnMovies(
-                            search: value,
-                          );
-                        },
-                      ),
-                    ),
+                    _buildSearch(context),
                     Expanded(
                       child: GridView.builder(
                         padding: const EdgeInsets.symmetric(
@@ -130,10 +72,10 @@ class _SearchTabState extends State<SearchTab> {
                         ),
                         itemCount: state.movieList.length,
                         gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.64,
-                        ),
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.64,
+                            ),
                         itemBuilder: (BuildContext context, int index) {
                           final movie = state.movieList[index];
                           return GestureDetector(
@@ -160,14 +102,15 @@ class _SearchTabState extends State<SearchTab> {
                                         width: 58,
                                         height: 28,
                                         decoration: BoxDecoration(
-                                          color: AppColors.blackColor.withOpacity(
-                                            0.7,
+                                          color: AppColors.blackColor
+                                              .withOpacity(0.7),
+                                          borderRadius: BorderRadius.circular(
+                                            16,
                                           ),
-                                          borderRadius: BorderRadius.circular(16),
                                         ),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           children: [
                                             Text(
                                               "${movie.rating}",
@@ -195,7 +138,7 @@ class _SearchTabState extends State<SearchTab> {
                     ),
                   ],
                 );
-              }else{
+              } else {
                 return Center(
                   child: Text(
                     'Something went wrong!',
@@ -206,6 +149,24 @@ class _SearchTabState extends State<SearchTab> {
             },
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildSearch(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: CustomTextFormField(
+        controller: _searchController,
+        hintText: "Search For Movie",
+        prefixIconWidget: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: SvgPicture.asset(Assets.icon.search),
+        ),
+        filledColor: AppColors.greyColor,
+        onFieldSubmitted: (value) {
+          context.read<MovieCubit>().getSearchOnMovies(search: value);
+        },
       ),
     );
   }

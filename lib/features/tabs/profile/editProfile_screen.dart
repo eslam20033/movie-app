@@ -29,6 +29,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var w=MediaQuery.sizeOf(context).width;
+    var h=MediaQuery.sizeOf(context).height;
     return Scaffold(
       appBar: AppBar(title: Text('Pick Avatar')),
       body: Padding(
@@ -36,8 +38,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 37),
-
               InkWell(
                 onTap: () {
                   showModalBottomSheet(
@@ -86,8 +86,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ),
                                         child: Center(
                                           child: SizedBox(
-                                            width: 80,
-                                            height: 80,
+                                            width: 0.22*w,
+                                            height: 0.1*h,
                                             child: Image.asset(
                                               avatars[index],
                                               fit: BoxFit.cover,
@@ -113,8 +113,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                             ),
                                             Center(
                                               child: SizedBox(
-                                                height: 80,
-                                                width: 80,
+                                                height: 0.1*h,
+                                                width: 0.22*w,
                                                 child: Image.asset(
                                                   avatars[index],
                                                   fit: BoxFit.cover,
@@ -135,8 +135,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   );
                 },
                 child: SizedBox(
-                  width: 150,
-                  height: 150,
+                  width: 0.41*w,
+                  height: 0.19*h,
                   child: CircleAvatar(
                     backgroundImage: AssetImage(
                       selectedIndex == -1
@@ -147,20 +147,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
 
-              SizedBox(height: 35),
+              SizedBox(height: 0.03*h),
 
               CustomTextFormField(
                 hintText: 'John Safwat',
                 prefixIcon: Icons.person,
               ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 0.025*h),
               CustomTextFormField(
                 hintText: '01200000000',
                 prefixIcon: Icons.phone,
               ),
 
-              SizedBox(height: 30),
+              SizedBox(height: 0.03*h),
 
               Row(
                 children: [
@@ -170,12 +170,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ],
               ),
-
-              SizedBox(height: 200),
-
+              SizedBox(height: 0.25*h),
               SizedBox(
                 width: double.infinity,
-                height: 56,
+                height: 0.07*h,
                 child: FilledButton(
                   onPressed: () {},
                   style: FilledButton.styleFrom(
@@ -190,11 +188,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
               ),
-
-              SizedBox(height: 19),
-
+              SizedBox(height: 0.02*h),
               SizedBox(
-                height: 56,
+                height: 0.07*h,
                 width: double.infinity,
                 child: FilledButton(
                   onPressed: () {},
@@ -210,6 +206,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
               ),
+              SizedBox(height: 0.03*h,),
             ],
           ),
         ),

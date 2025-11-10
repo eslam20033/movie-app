@@ -10,4 +10,5 @@ class AppRoutes {
   static const String browseTab = '/browseTab';
   static const String profileTab = '/profileTab';
   static const String editProfileScreen = '/editProfileScreen';
+  static const String filmDetails = '/filmDetails';
 }

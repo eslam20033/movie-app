@@ -3,6 +3,7 @@ import 'package:flutter_application_1/core/theme/app_colors.dart';
 import 'package:flutter_application_1/features/movies/presentation/view_model/movie_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../../../core/routes/app_routes.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../gen/assets.gen.dart';
 
@@ -79,7 +80,9 @@ class _SearchTabState extends State<SearchTab> {
                         itemBuilder: (BuildContext context, int index) {
                           final movie = state.movieList[index];
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).pushNamed(AppRoutes.filmDetails);
+                            },
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 10,

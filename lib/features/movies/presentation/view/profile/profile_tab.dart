@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/routes/app_routes.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
+import 'package:flutter_application_1/features/movies/presentation/view/profile/widget/drawer_view.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 
 class ProfileTab extends StatelessWidget {
@@ -13,6 +14,11 @@ class ProfileTab extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xff212121),
+          title: Text('Profile'),
+        ),
+        drawer: Drawer(backgroundColor: Colors.black, child: DrawerView()),
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(

@@ -92,11 +92,22 @@ class $AssetsIconGen {
   /// File path: assets/icon/Vector.png
   AssetGenImage get vector => const AssetGenImage('assets/icon/Vector.png');
 
+  /// File path: assets/icon/actor_image.png
+  AssetGenImage get actorImage =>
+      const AssetGenImage('assets/icon/actor_image.png');
+
   /// File path: assets/icon/explore.svg
   String get explore => 'assets/icon/explore.svg';
 
   /// File path: assets/icon/explore_active.svg
   String get exploreActive => 'assets/icon/explore_active.svg';
+
+  /// File path: assets/icon/film_details_image.png
+  AssetGenImage get filmDetailsImage =>
+      const AssetGenImage('assets/icon/film_details_image.png');
+
+  /// File path: assets/icon/heart.svg
+  String get heart => 'assets/icon/heart.svg';
 
   /// File path: assets/icon/home.svg
   String get home => 'assets/icon/home.svg';
@@ -107,11 +118,23 @@ class $AssetsIconGen {
   /// File path: assets/icon/icon_google.svg
   String get iconGoogle => 'assets/icon/icon_google.svg';
 
+  /// File path: assets/icon/play.svg
+  String get play => 'assets/icon/play.svg';
+
+  /// File path: assets/icon/save.svg
+  String get save => 'assets/icon/save.svg';
+
   /// File path: assets/icon/search.svg
   String get search => 'assets/icon/search.svg';
 
   /// File path: assets/icon/search_active.svg
   String get searchActive => 'assets/icon/search_active.svg';
+
+  /// File path: assets/icon/star.svg
+  String get star => 'assets/icon/star.svg';
+
+  /// File path: assets/icon/time.svg
+  String get time => 'assets/icon/time.svg';
 
   /// File path: assets/icon/🦆 icon _Identification_.png
   AssetGenImage get aIconIdentification =>
@@ -133,13 +156,20 @@ class $AssetsIconGen {
     vector2,
     vector3,
     vector,
+    actorImage,
     explore,
     exploreActive,
+    filmDetailsImage,
+    heart,
     home,
     homeActive,
     iconGoogle,
+    play,
+    save,
     search,
     searchActive,
+    star,
+    time,
     aIconIdentification,
     aIconEyeOff,
   ];

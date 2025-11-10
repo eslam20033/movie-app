@@ -4,6 +4,8 @@ import 'package:flutter_application_1/features/movies/presentation/view_model/mo
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/routes/app_routes.dart';
+
 class HomeTabView extends StatefulWidget {
   const HomeTabView({super.key});
 
@@ -104,6 +106,11 @@ class _HomeTabViewState extends State<HomeTabView> {
                                         featured[index].mediumCoverImage ?? '',
                                     rating: featured[index].rating ?? 0,
                                     isFeatured: true,
+                                    onTap: () {
+                                      Navigator.of(
+                                        context,
+                                      ).pushNamed(AppRoutes.filmDetails);
+                                    },
                                   ),
                                 );
                               },
@@ -163,6 +170,11 @@ class _HomeTabViewState extends State<HomeTabView> {
                                 return Padding(
                                   padding: const EdgeInsets.only(right: 16),
                                   child: MoviePosterCard(
+                                    onTap: () {
+                                      Navigator.of(
+                                        context,
+                                      ).pushNamed(AppRoutes.filmDetails);
+                                    },
                                     image: action[index].mediumCoverImage ?? '',
                                     rating: action[index].rating ?? 0,
                                     isFeatured: false,
@@ -194,11 +206,13 @@ class MoviePosterCard extends StatelessWidget {
   final String image;
   final double rating;
   final bool isFeatured;
+  final Function() onTap;
 
   const MoviePosterCard({
     required this.image,
     required this.rating,
     this.isFeatured = true,
+    required this.onTap,
   });
 
   @override
@@ -206,52 +220,57 @@ class MoviePosterCard extends StatelessWidget {
     double width = isFeatured ? 200 : 120;
     double height = isFeatured ? 300 : 180;
 
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 5,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.network(image, fit: BoxFit.cover),
-            Positioned(
-              top: 10,
-              left: 10,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.7),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '$rating',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
-                    ),
-                    SizedBox(width: 4),
-                    Icon(Icons.star, color: Colors.yellow, size: 16),
-                  ],
-                ),
-              ),
+    return InkWell(
+      onTap: () {
+        onTap();
+      },
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 5,
+              offset: Offset(0, 3),
             ),
           ],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.network(image, fit: BoxFit.cover),
+              Positioned(
+                top: 10,
+                left: 10,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        '$rating',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Icon(Icons.star, color: Colors.yellow, size: 16),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

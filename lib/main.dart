@@ -10,6 +10,8 @@ import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'features/movies/data/api/dio_movie_helper.dart';
+import 'features/movies/presentation/view/home/home_tab_view.dart';
+import 'features/movies/presentation/view/movie_details/film_details.dart';
 import 'features/movies/presentation/view/profile/editProfile_screen.dart';
 import 'firebase_options.dart';
 
@@ -44,6 +46,8 @@ class MyApp extends StatelessWidget {
         // AppRoutes.registerRoute: (context) => const RegisterScreen(),
         // AppRoutes.forgetPasswordRoute: (context) =>
         //     const ForgetPasswordScreen(),
+        AppRoutes.homeRoute: (context) => HomeTabView(),
+        AppRoutes.filmDetails: (context) => FilmDetails(),
         AppRoutes.editProfileScreen: (context) => EditProfileScreen(),
         AppRoutes.mainLayoutRoute: (context) => MainLayout(),
       },

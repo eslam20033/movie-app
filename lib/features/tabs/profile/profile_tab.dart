@@ -8,6 +8,8 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var w=MediaQuery.sizeOf(context).width;
+    var h=MediaQuery.sizeOf(context).height;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -23,21 +25,21 @@ class ProfileTab extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 24),
+                      SizedBox(height: 0.03*h),
                       Row(
                         children: [
                           Column(
                             children: [
                               SizedBox(
-                                width: 118,
-                                height: 118,
+                                width: 0.32*w,
+                                height: 0.14*h,
                                 child: CircleAvatar(
                                   backgroundImage: AssetImage(
                                     Assets.avatar.avatar1.path,
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: 0.018*h),
                               Text(
                                 'John Safwat',
                                 style: TextStyle(
@@ -48,7 +50,7 @@ class ProfileTab extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(width: 46),
+                          SizedBox(width: 0.02*w),
                           Row(
                             children: [
                               Column(
@@ -61,7 +63,7 @@ class ProfileTab extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  SizedBox(height: 16),
+                                  SizedBox(height: 0.01*h),
                                   Text(
                                     'Watch List',
                                     style: TextStyle(
@@ -72,7 +74,7 @@ class ProfileTab extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 32),
+                              SizedBox(width: 0.08*w),
                               Column(
                                 children: [
                                   Text(
@@ -83,7 +85,7 @@ class ProfileTab extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  SizedBox(height: 16),
+                                  SizedBox(height: 0.01*h),
                                   Text(
                                     'History',
                                     style: TextStyle(
@@ -98,11 +100,10 @@ class ProfileTab extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: 23),
+                      SizedBox(height: 0.028*h),
                       Row(
                         children: [
                           Expanded(
-                            flex: 2,
                             child: SizedBox(
                               height: 56,
                               child: FilledButton(
@@ -128,40 +129,37 @@ class ProfileTab extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            flex: 1,
-                            child: SizedBox(
-                              height: 56,
-                              child: FilledButton(
-                                onPressed: () {},
-                                style: FilledButton.styleFrom(
-                                  backgroundColor: AppColors.redColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
+                          SizedBox(width: 0.027*w),
+                          SizedBox(
+                            height: 56,
+                            child: FilledButton(
+                              onPressed: () {},
+                              style: FilledButton.styleFrom(
+                                backgroundColor: AppColors.redColor,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15),
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Exit',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Exit',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    SizedBox(width: 8),
-                                    Icon(Icons.logout, color: Colors.white),
-                                  ],
-                                ),
+                                  ),
+                                  SizedBox(width: 8),
+                                  Icon(Icons.logout, color: Colors.white),
+                                ],
                               ),
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 0.025*h),
 
                       TabBar(
                         padding: EdgeInsets.zero,

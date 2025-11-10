@@ -5,7 +5,9 @@ import 'package:flutter_application_1/core/provider/app_provider.dart';
 import 'package:flutter_application_1/core/routes/app_routes.dart';
 import 'package:flutter_application_1/core/theme/app_theme.dart';
 import 'package:flutter_application_1/features/main_layout.dart';
-import 'package:flutter_application_1/features/tabs/profile/editProfile_screen.dart';
+import 'package:flutter_application_1/features/tabs/home/home_tab_view.dart';
+import 'package:flutter_application_1/features/tabs/screens/editProfile_screen.dart';
+import 'package:flutter_application_1/features/tabs/screens/film_details.dart';
 import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -40,6 +42,8 @@ class MyApp extends StatelessWidget {
         // AppRoutes.registerRoute: (context) => const RegisterScreen(),
         // AppRoutes.forgetPasswordRoute: (context) =>
         //     const ForgetPasswordScreen(),
+        AppRoutes.homeRoute: (context) => HomeTabView(),
+        AppRoutes.filmDetails: (context) => FilmDetails(),
         AppRoutes.editProfileScreen: (context) => EditProfileScreen(),
         AppRoutes.mainLayoutRoute: (context) => MainLayout(),
       },

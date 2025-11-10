@@ -98,6 +98,9 @@ class $AssetsIconGen {
   /// File path: assets/icon/explore_active.svg
   String get exploreActive => 'assets/icon/explore_active.svg';
 
+  /// File path: assets/icon/heart.svg
+  String get heart => 'assets/icon/heart.svg';
+
   /// File path: assets/icon/home.svg
   String get home => 'assets/icon/home.svg';
 
@@ -107,11 +110,23 @@ class $AssetsIconGen {
   /// File path: assets/icon/icon_google.svg
   String get iconGoogle => 'assets/icon/icon_google.svg';
 
+  /// File path: assets/icon/play.svg
+  String get play => 'assets/icon/play.svg';
+
+  /// File path: assets/icon/save.svg
+  String get save => 'assets/icon/save.svg';
+
   /// File path: assets/icon/search.svg
   String get search => 'assets/icon/search.svg';
 
   /// File path: assets/icon/search_active.svg
   String get searchActive => 'assets/icon/search_active.svg';
+
+  /// File path: assets/icon/star.svg
+  String get star => 'assets/icon/star.svg';
+
+  /// File path: assets/icon/time.svg
+  String get time => 'assets/icon/time.svg';
 
   /// File path: assets/icon/🦆 icon _Identification_.png
   AssetGenImage get aIconIdentification =>
@@ -135,11 +150,16 @@ class $AssetsIconGen {
     vector,
     explore,
     exploreActive,
+    heart,
     home,
     homeActive,
     iconGoogle,
+    play,
+    save,
     search,
     searchActive,
+    star,
+    time,
     aIconIdentification,
     aIconEyeOff,
   ];
@@ -156,6 +176,18 @@ class $AssetsImagesGen {
   AssetGenImage get watchNow =>
       const AssetGenImage('assets/images/Watch Now.png');
 
+  /// File path: assets/images/actor_image.png
+  AssetGenImage get actorImage =>
+      const AssetGenImage('assets/images/actor_image.png');
+
+  /// File path: assets/images/film_details_image.png
+  AssetGenImage get filmDetailsImage =>
+      const AssetGenImage('assets/images/film_details_image.png');
+
+  /// File path: assets/images/film_image.png
+  AssetGenImage get filmImage =>
+      const AssetGenImage('assets/images/film_image.png');
+
   /// File path: assets/images/movieImage.png
   AssetGenImage get movieImage =>
       const AssetGenImage('assets/images/movieImage.png');
@@ -168,6 +200,9 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     availableNow,
     watchNow,
+    actorImage,
+    filmDetailsImage,
+    filmImage,
     movieImage,
     pobcornImage,
   ];

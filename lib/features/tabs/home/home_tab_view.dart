@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/routes/app_routes.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
 import 'package:flutter_application_1/gen/assets.gen.dart';
 
@@ -115,11 +116,20 @@ class _HomeTabViewState extends State<HomeTabView> {
                           padding: _currentIndex == index
                               ? const EdgeInsets.symmetric(horizontal: 4)
                               : EdgeInsets.symmetric(
-                              vertical: 0.04 * h, horizontal: 4),
-                          child: MoviePosterCard(
-                            image: featuredMovies[index]['image'],
-                            rating: featuredMovies[index]['rating'],
-                            isFeatured: true,
+                                  vertical: 0.04 * h,
+                                  horizontal: 4,
+                                ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(
+                                context,
+                              ).pushNamed(AppRoutes.filmDetails);
+                            },
+                            child: MoviePosterCard(
+                              image: featuredMovies[index]['image'],
+                              rating: featuredMovies[index]['rating'],
+                              isFeatured: true,
+                            ),
                           ),
                         );
                       },
@@ -150,7 +160,7 @@ class _HomeTabViewState extends State<HomeTabView> {
                         Row(
                           children: [
                             Text(
-                              'See More',
+                              'See More ',
                               style: TextStyle(
                                 color: AppColors.yellowColor,
                                 fontSize: 18,
@@ -176,10 +186,17 @@ class _HomeTabViewState extends State<HomeTabView> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(right: 16),
-                          child: MoviePosterCard(
-                            image: actionMovies[index]['image'],
-                            rating: actionMovies[index]['rating'],
-                            isFeatured: false,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(
+                                context,
+                              ).pushNamed(AppRoutes.filmDetails);
+                            },
+                            child: MoviePosterCard(
+                              image: actionMovies[index]['image'],
+                              rating: actionMovies[index]['rating'],
+                              isFeatured: false,
+                            ),
                           ),
                         );
                       },

@@ -325,56 +325,54 @@ class ActorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
-      height: 92,
       decoration: BoxDecoration(
         color: AppColors.greyColor,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(11.0),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                Assets.icon.actorImage.path,
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-              ),
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              Assets.icon.actorImage.path,
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
             ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Name: Hayley Atwell',
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Name: Hayley Atwell',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 5),
+                Expanded(
+                  child: Text(
+                    'Character: Wanda Maximoff / The Scarlet Witch ',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 18,
                     ),
-                    overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 5),
-                  Expanded(
-                    child: Text(
-                      'Character: Wanda Maximoff / The Scarlet Witch',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

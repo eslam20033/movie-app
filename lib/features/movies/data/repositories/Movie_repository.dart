@@ -1,5 +1,3 @@
-import 'package:flutter_application_1/api/api_endpoints.dart';
-
 import '../api/dio_movie_helper.dart';
 import '../api/movie_endpoints.dart';
 import '../models/movie_model.dart';

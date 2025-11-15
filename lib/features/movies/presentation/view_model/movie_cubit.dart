@@ -22,7 +22,7 @@ class MovieCubit extends Cubit<MovieState> {
       );
       if (movies.isEmpty) {
         emit(MovieEmptyState('No Movie In List'));
-        return; // <-- prevent overriding the empty state
+        return;
       }
 
       _allMovies = movies;
@@ -48,15 +48,13 @@ class MovieCubit extends Cubit<MovieState> {
       );
       if (result.isEmpty) {
         emit(MovieEmptyState('Not Found Movie'));
-        return; // <-- prevent emitting success after empty
+        return;
       }
       emit(SearchSuccessState(movieList: result));
     } catch (e) {
       emit(MovieErrorState(e.toString()));
     }
   }
-
-  /// Clears current search results and resets UI to initial placeholder
   void clearSearch() {
     emit(MovieInitial());
   }

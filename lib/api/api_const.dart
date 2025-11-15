@@ -1,4 +1,4 @@
 class ApiConst {
   static final String baseUrl = 'https://route-movie-apis.vercel.app/';
-  static final String movieBaseUrl = 'https://yts.mx/api/v2';
+  static final String movieBaseUrl = 'https://yts.mx/api/v2/';
 }

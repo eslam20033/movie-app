@@ -190,6 +190,10 @@ class $AssetsImagesGen {
   AssetGenImage get movieImage =>
       const AssetGenImage('assets/images/movieImage.png');
 
+  /// File path: assets/images/no-photo-available.png
+  AssetGenImage get noPhotoAvailable =>
+      const AssetGenImage('assets/images/no-photo-available.png');
+
   /// File path: assets/images/pobcornImage.png
   AssetGenImage get pobcornImage =>
       const AssetGenImage('assets/images/pobcornImage.png');
@@ -199,6 +203,7 @@ class $AssetsImagesGen {
     availableNow,
     watchNow,
     movieImage,
+    noPhotoAvailable,
     pobcornImage,
   ];
 }

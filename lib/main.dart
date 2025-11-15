@@ -4,11 +4,11 @@ import 'package:flutter_application_1/api/dio_helper.dart';
 import 'package:flutter_application_1/core/provider/app_provider.dart';
 import 'package:flutter_application_1/core/routes/app_routes.dart';
 import 'package:flutter_application_1/core/theme/app_theme.dart';
-import 'package:flutter_application_1/features/movies/presentation/view_model/movie_cubit.dart';
 import 'package:flutter_application_1/features/tabs/main_layout.dart';
 import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'api/bloc_observer.dart';
 import 'features/movies/data/api/dio_movie_helper.dart';
 import 'features/movies/presentation/view/home/home_tab_view.dart';
 import 'features/movies/presentation/view/movie_details/film_details.dart';
@@ -17,6 +17,7 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await DioHelper.init();
   await DioMovieHelper.init();

@@ -3,9 +3,9 @@ import 'package:flutter_application_1/core/theme/app_colors.dart';
 import 'package:flutter_application_1/features/movies/presentation/view_model/movie_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../../../core/routes/app_routes.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../gen/assets.gen.dart';
+import '../../widgets/movie_poster_card.dart';
 
 class SearchTab extends StatefulWidget {
   const SearchTab({super.key});
@@ -75,66 +75,17 @@ class _SearchTabState extends State<SearchTab> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
+                              crossAxisSpacing: 15,
+                              mainAxisSpacing: 15,
                               childAspectRatio: 0.64,
                             ),
                         itemBuilder: (BuildContext context, int index) {
                           final movie = state.movieList[index];
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(AppRoutes.filmDetails);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 10,
-                                vertical: 10,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(16),
-                                child: Stack(
-                                  children: [
-                                    Image.network(
-                                      movie.mediumCoverImage ?? "",
-                                      width: 280,
-                                      height: 320,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    Positioned(
-                                      top: 10,
-                                      left: 10,
-                                      child: Container(
-                                        width: 58,
-                                        height: 28,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.blackColor
-                                              .withOpacity(0.7),
-                                          borderRadius: BorderRadius.circular(
-                                            16,
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "${movie.rating}",
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            const SizedBox(width: 2),
-                                            Icon(
-                                              Icons.star,
-                                              color: AppColors.yellowColor,
-                                              size: 20,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
+                          return MoviePosterCard(
+                            index: index,
+                            image: movie.mediumCoverImage ?? '',
+                            rating: movie.rating ?? 0,
+                            featured: state.movieList,
                           );
                         },
                       ),
@@ -167,6 +118,15 @@ class _SearchTabState extends State<SearchTab> {
           child: SvgPicture.asset(Assets.icon.search),
         ),
         filledColor: AppColors.greyColor,
+        suffixIcon: _searchController.text.isNotEmpty
+            ? IconButton(
+                onPressed: () {
+                  _searchController.clear();
+                  context.read<MovieCubit>().clearSearch();
+                },
+                icon: Icon(Icons.clear, color: Colors.white),
+              )
+            : SizedBox(),
         onFieldSubmitted: (value) {
           context.read<MovieCubit>().getSearchOnMovies(search: value);
         },

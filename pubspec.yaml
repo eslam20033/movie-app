@@ -26,6 +26,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   dio: ^5.9.0
+  youtube_player_flutter: ^9.1.3
   # ----------------------------------------------------
 
 dev_dependencies:
@@ -50,7 +51,6 @@ flutter:
     - assets/images/
     - assets/avatar/
     - assets/icon/
-
   # fonts:
   #   - family: Schyler
   #     fonts:

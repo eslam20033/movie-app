@@ -12,6 +12,7 @@ import 'api/bloc_observer.dart';
 import 'features/movies/data/api/dio_movie_helper.dart';
 import 'features/movies/presentation/view/home/home_tab_view.dart';
 import 'features/movies/presentation/view/movie_details/film_details.dart';
+import 'features/movies/presentation/view/movie_details/movie_player.dart';
 import 'features/movies/presentation/view/profile/editProfile_screen.dart';
 import 'firebase_options.dart';
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         //     const ForgetPasswordScreen(),
         AppRoutes.homeRoute: (context) => HomeTabView(),
         AppRoutes.filmDetails: (context) => FilmDetails(),
+        AppRoutes.moviePlayer: (context) => MoviePlayer(),
         AppRoutes.editProfileScreen: (context) => EditProfileScreen(),
         AppRoutes.mainLayoutRoute: (context) => MainLayout(),
       },

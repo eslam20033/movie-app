@@ -6,6 +6,7 @@ import 'package:flutter_application_1/features/movies/presentation/widgets/movie
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import '../../../../../core/routes/app_routes.dart';
 
 class FilmDetails extends StatefulWidget {
   const FilmDetails({super.key});
@@ -70,56 +71,72 @@ class _FilmDetailsState extends State<FilmDetails> {
                 padding: EdgeInsets.zero,
                 child: Column(
                   children: [
-                        Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                movieDetails.mediumCoverImage ?? '',
-                              ),
-                              fit: BoxFit.fill,
+                    InkWell(
+                      onTap: () {
+                        if (movieDetails.ytTrailerCode != null &&
+                            movieDetails.ytTrailerCode!.isNotEmpty) {
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.moviePlayer,
+                            arguments: {'trailerId': movieDetails.ytTrailerCode},
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Trailer not available')),
+                          );
+                        }
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: NetworkImage(
+                              movieDetails.mediumCoverImage ?? '',
                             ),
+                            fit: BoxFit.fill,
                           ),
-                          child: Container(
-                            width: double.infinity,
-                            height: 645,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: AlignmentDirectional.bottomCenter,
-                                end: AlignmentDirectional.topCenter,
-                                colors: [
-                                  Color(0xff121312),
-                                  Color(0xff121312).withValues(alpha: 0.2),
-                                ],
-                              ),
-                            ),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 248),
-                                SvgPicture.asset(Assets.icon.play),
-                                SizedBox(height: 188),
-                                Text(
-                                  movieDetails.title ?? '',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                                SizedBox(height: 15),
-                                Text(
-                                  '${movieDetails.year}',
-                                  style: TextStyle(
-                                    color: Color(0xffADADAD),
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: 645,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: AlignmentDirectional.bottomCenter,
+                              end: AlignmentDirectional.topCenter,
+                              colors: [
+                                Color(0xff121312),
+                                Color(0xff121312).withValues(alpha: 0.2),
                               ],
                             ),
                           ),
+                          child: Column(
+                            children: [
+                              SizedBox(height: 248),
+                              SvgPicture.asset(Assets.icon.play),
+                              SizedBox(height: 188),
+                              Text(
+                                movieDetails.title ?? '',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 15),
+                              Text(
+                                '${movieDetails.year}',
+                                style: TextStyle(
+                                  color: Color(0xffADADAD),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
+                      ),
+                    ),
                     SizedBox(height: 8),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -136,7 +153,20 @@ class _FilmDetailsState extends State<FilmDetails> {
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (movieDetails.ytTrailerCode != null &&
+                                    movieDetails.ytTrailerCode!.isNotEmpty) {
+                                  Navigator.pushNamed(
+                                    context,
+                                    AppRoutes.moviePlayer,
+                                    arguments: {'trailerId': movieDetails.ytTrailerCode},
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Trailer not available')),
+                                  );
+                                }
+                              },
                               child: Text(
                                 'Watch',
                                 style: TextStyle(

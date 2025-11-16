@@ -11,4 +11,5 @@ class AppRoutes {
   static const String profileTab = '/profileTab';
   static const String editProfileScreen = '/editProfileScreen';
   static const String filmDetails = '/filmDetails';
+  static const String moviePlayer = '/moviePlayer';
 }

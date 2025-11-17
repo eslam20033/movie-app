@@ -4,6 +4,7 @@ import 'package:flutter_application_1/features/movies/presentation/view_model/mo
 import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widgets/alertdialog_no_internet.dart';
 import '../../widgets/movie_poster_card.dart';
 
 class HomeTabView extends StatefulWidget {
@@ -43,6 +44,13 @@ class _HomeTabViewState extends State<HomeTabView> {
         builder: (context, state) {
           if (state is MovieLoadingState) {
             return Center(child: CircularProgressIndicator());
+          } else if (state is MovieEmptyState) {
+            return AlertDialogInternetConnection(
+              text: state.message,
+              onTap: () {
+                context.read<MovieCubit>().getMovies();
+              },
+            );
           } else if (state is MovieSuccessState) {
             final featured = state.featured;
             final action = state.action;
@@ -53,6 +61,8 @@ class _HomeTabViewState extends State<HomeTabView> {
                     child: Image.network(
                       featured[_currentIndex].smallCoverImage ?? '',
                       fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) =>
+                          Image.asset(Assets.images.noPosterAvailable.path),
                     ),
                   ),
                   Positioned.fill(
@@ -197,4 +207,3 @@ class _HomeTabViewState extends State<HomeTabView> {
     );
   }
 }
-

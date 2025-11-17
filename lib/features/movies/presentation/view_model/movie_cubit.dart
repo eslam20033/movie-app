@@ -13,7 +13,7 @@ class MovieCubit extends Cubit<MovieState> {
   List<Movies> _featuredMovies = [];
   List<Movies> _actionMovies = [];
 
-  Future<void> getMovies({int page = 1, int limit = 29}) async {
+  Future<void> getMovies({int page = 1, int limit = 50}) async {
     emit(MovieLoadingState());
     try {
       final List<Movies> movies = await _repository.getMovies(
@@ -21,7 +21,7 @@ class MovieCubit extends Cubit<MovieState> {
         limit: limit,
       );
       if (movies.isEmpty) {
-        emit(MovieEmptyState('No Movie In List'));
+        emit(MovieEmptyState('NO INTERNET !'));
         return;
       }
 
@@ -55,6 +55,7 @@ class MovieCubit extends Cubit<MovieState> {
       emit(MovieErrorState(e.toString()));
     }
   }
+
   void clearSearch() {
     emit(MovieInitial());
   }

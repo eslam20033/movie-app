@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/gen/assets.gen.dart';
 
 import '../../../../../../core/routes/app_routes.dart';
 
@@ -49,7 +50,12 @@ class MoviePosterCard extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.network(image, fit: BoxFit.cover),
+              Image.network(
+                image,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    Image.asset(Assets.images.noPosterAvailable.path),
+              ),
               Positioned(
                 top: 10,
                 left: 10,

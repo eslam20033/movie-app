@@ -10,7 +10,7 @@ class MovieDetailsRepository {
     );
     if (response.statusCode == 200 && response.data != null) {
       final movieDetails = MovieDetailsModel.fromJson(response.data);
-      return movieDetails.data?.movie ?? null;
+      return movieDetails.data?.movie;
     } else {
       print('Error: ${response.statusCode}');
       return null;

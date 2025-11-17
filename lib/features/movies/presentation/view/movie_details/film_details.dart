@@ -44,7 +44,11 @@ class _FilmDetailsState extends State<FilmDetails> {
         body: BlocBuilder<MovieDetailsCubit, MovieDetailsState>(
           builder: (context, state) {
             if (state is MovieDetailsErrorState) {
-              return Center(child: Text(state.error));
+              return Center(
+                child: Text(state.error, style: TextStyle(color: Colors.white)),
+              );
+            } else if (state is MovieDetailsLoadingState) {
+              return Center(child: CircularProgressIndicator());
             } else if (state is MovieDetailsSuccessState) {
               final movieDetails = state.movieDetails;
               final List<String?> screenshots = [
@@ -52,7 +56,6 @@ class _FilmDetailsState extends State<FilmDetails> {
                 movieDetails.largeScreenshotImage2,
                 movieDetails.largeScreenshotImage3,
               ].where((url) => url != null && url.isNotEmpty).toList();
-
               List<Image> screenShots = screenshots
                   .map(
                     (url) => Image.network(
@@ -78,63 +81,67 @@ class _FilmDetailsState extends State<FilmDetails> {
                           Navigator.pushNamed(
                             context,
                             AppRoutes.moviePlayer,
-                            arguments: {'trailerId': movieDetails.ytTrailerCode},
+                            arguments: {
+                              'trailerId': movieDetails.ytTrailerCode,
+                            },
                           );
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Trailer not available')),
+                            const SnackBar(
+                              content: Text('Trailer not available'),
+                            ),
                           );
                         }
                       },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              movieDetails.mediumCoverImage ?? '',
-                            ),
-                            fit: BoxFit.fill,
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomCenter,
+                        children: [
+                          Image.network(
+                            movieDetails.largeCoverImage ?? '',
+                            width: double.infinity,
+                            height: MediaQuery.sizeOf(context).height * 0.6,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Image.asset(
+                                  Assets.images.noPosterAvailable.path,
+                                  width: double.infinity,
+                                  height:
+                                      MediaQuery.sizeOf(context).height * 0.6,
+                                  fit: BoxFit.cover,
+                                ),
                           ),
-                        ),
-                        child: Container(
-                          width: double.infinity,
-                          height: 645,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: AlignmentDirectional.bottomCenter,
-                              end: AlignmentDirectional.topCenter,
-                              colors: [
-                                Color(0xff121312),
-                                Color(0xff121312).withValues(alpha: 0.2),
-                              ],
+                          Positioned.fill(
+                            child: Container(
+                              color: Colors.black.withAlpha(130),
+                              child: Center(
+                                child: SvgPicture.asset(Assets.icon.play),
+                              ),
                             ),
                           ),
-                          child: Column(
+                          Column(
                             children: [
-                              SizedBox(height: 248),
-                              SvgPicture.asset(Assets.icon.play),
-                              SizedBox(height: 188),
                               Text(
                                 movieDetails.title ?? '',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 24,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 28,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              SizedBox(height: 15),
+                              SizedBox(height: 8),
                               Text(
                                 '${movieDetails.year}',
                                 style: TextStyle(
-                                  color: Color(0xffADADAD),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 20,
-                                  fontWeight: FontWeight.bold,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
                             ],
                           ),
-                        ),
+                        ],
                       ),
                     ),
                     SizedBox(height: 8),
@@ -159,11 +166,15 @@ class _FilmDetailsState extends State<FilmDetails> {
                                   Navigator.pushNamed(
                                     context,
                                     AppRoutes.moviePlayer,
-                                    arguments: {'trailerId': movieDetails.ytTrailerCode},
+                                    arguments: {
+                                      'trailerId': movieDetails.ytTrailerCode,
+                                    },
                                   );
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    const SnackBar(content: Text('Trailer not available')),
+                                    const SnackBar(
+                                      content: Text('Trailer not available'),
+                                    ),
                                   );
                                 }
                               },
@@ -353,7 +364,7 @@ class _FilmDetailsState extends State<FilmDetails> {
                 ),
               );
             } else {
-              return Center(child: CircularProgressIndicator());
+              return SizedBox();
             }
           },
         ),

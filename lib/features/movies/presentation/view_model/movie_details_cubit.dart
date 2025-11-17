@@ -29,7 +29,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
           ),
         );
       } else {
-        emit(MovieDetailsEmptyState('No details found for this movie.'));
+        emit(MovieDetailsErrorState('Failed to load movie details'));
       }
     } catch (e) {
       emit(MovieDetailsErrorState(e.toString()));

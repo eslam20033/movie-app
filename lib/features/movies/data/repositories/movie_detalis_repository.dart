@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../api/dio_movie_helper.dart';
 import '../api/movie_endpoints.dart';
 import '../models/movie_details_model.dart';
@@ -12,7 +14,7 @@ class MovieDetailsRepository {
       final movieDetails = MovieDetailsModel.fromJson(response.data);
       return movieDetails.data?.movie;
     } else {
-      print('Error: ${response.statusCode}');
+      log('Error: ${response.statusCode}');
       return null;
     }
   }

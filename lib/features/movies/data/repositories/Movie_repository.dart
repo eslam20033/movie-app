@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../api/dio_movie_helper.dart';
 import '../api/movie_endpoints.dart';
 import '../models/movie_model.dart';
@@ -14,11 +16,11 @@ class MovieRepository {
         final movieModel = MovieModel.fromJson(response.data);
         return movieModel.data?.movies ?? [];
       } else {
-        print('Failed to load movies: ${response.statusCode}');
+        log('Failed to load movies: ${response.statusCode}');
         return [];
       }
     } catch (e) {
-      print('Error fetching movies: $e');
+      log('Error fetching movies: $e');
       return [];
     }
   }
@@ -33,11 +35,11 @@ class MovieRepository {
         final result = MovieModel.fromJson(response.data);
         return result.data?.movies ?? [];
       } else {
-        print('Failed to load movies: ${response.statusCode}');
+        log('Failed to load movies: ${response.statusCode}');
         return [];
       }
     } catch (e) {
-      print('Error fetching movies: $e');
+      log('Error fetching movies: $e');
       return [];
     }
   }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_application_1/features/movies/data/api/movie_endpoints.dart';
 import 'package:flutter_application_1/features/movies/data/models/movie_model.dart';
 
@@ -14,7 +16,7 @@ class MovieSuggestionsRepo {
         final suggestionsMovies = MovieModel.fromJson(response.data);
         return suggestionsMovies.data?.movies ?? [];
       } else {
-        print('Error: ${response.statusCode}');
+        log('Error: ${response.statusCode}');
         return throw Exception('Failed to load suggested movies');
       }
     } catch (e) {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/provider/app_provider.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
 import 'package:flutter_application_1/core/widgets/custom_text_field.dart';
+import 'package:flutter_application_1/gen/assets.gen.dart';
 import 'package:flutter_application_1/l10n/app_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -25,22 +26,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
   final _phoneController = TextEditingController();
-  int _avatarId = 1;
+  int _avatarId = 0;
 
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
-  int _selectedAvatarIndex = 1;
+  int _selectedAvatarIndex = 0;
 
   final List<String> _avatarPaths = [
-    'assets/avatar/avatar1.png',
-    'assets/avatar/avatar2.png',
-    'assets/avatar/avatar3.png',
-    'assets/avatar/avatar4.png',
-    'assets/avatar/avatar5.png',
-    'assets/avatar/avatar6.png',
-    'assets/avatar/avatar7.png',
-    'assets/avatar/avatar8.png',
-    'assets/avatar/avatar9.png',
+    Assets.avatar.avatar1.path,
+    Assets.avatar.avatar2.path,
+    Assets.avatar.avatar3.path,
+    Assets.avatar.avatar4.path,
+    Assets.avatar.avatar5.path,
+    Assets.avatar.avatar6.path,
+    Assets.avatar.avatar7.path,
+    Assets.avatar.avatar8.path,
+    Assets.avatar.avatar9.path,
   ];
 
   @override
@@ -97,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     context: context,
                     barrierDismissible: false,
                     builder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator(color: AppColors.yellowColor,)),
                   );
                 } else if (state is RegisterSuccess) {
                   Navigator.pop(context);
@@ -165,7 +166,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           CustomTextFormField(
                             controller: _nameController,
                             hintText: locale.name,
-                            prefixIcon: Icons.person_outline,
+                            prefixIconWidget: Icon(
+                              Icons.perm_identity,
+                              color: Colors.white,
+                            ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your name';
@@ -176,8 +180,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           const SizedBox(height: 20),
                           CustomTextFormField(
                             controller: _emailController,
+                            prefixIconWidget: Icon(
+                              Icons.email,
+                              color: Colors.white,
+                            ),
                             hintText: locale.email,
-                            prefixIcon: Icons.email_outlined,
                             validator: (value) {
                               if (value == null ||
                                   value.isEmpty ||
@@ -191,7 +198,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           CustomTextFormField(
                             controller: _passwordController,
                             hintText: locale.password,
-                            prefixIcon: Icons.lock_outline,
+                            prefixIconWidget: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
                             obscureText: !_isPasswordVisible,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -217,7 +227,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           CustomTextFormField(
                             controller: _confirmPasswordController,
                             hintText: locale.confirmPassword,
-                            prefixIcon: Icons.lock_outline,
+                            prefixIconWidget: Icon(
+                              Icons.lock,
+                              color: Colors.white,
+                            ),
                             obscureText: !_isConfirmPasswordVisible,
                             suffixIcon: IconButton(
                               icon: Icon(
@@ -244,7 +257,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           CustomTextFormField(
                             controller: _phoneController,
                             hintText: locale.phoneNumber,
-                            prefixIcon: Icons.phone_outlined,
+                            prefixIconWidget: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                            ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter your phone number';

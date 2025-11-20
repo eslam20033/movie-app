@@ -11,9 +11,8 @@ class ApiEndPoints {
   static final String getAllFavourites = 'favorites/all'; // get
 
   static final String deleteMovie =
-      'favorites/remove/movieId'; // delete = 'auth/login';
-  static final String movieIsFavourite = 'favorites/is-favorite/movieId'; //GET
+      'favorites/remove'; // delete
+  static final String movieIsFavourite = 'favorites/is-favorite'; //GET
 
-  static final String updateProfile =
-      'profile'; // can do post and get profile info and delete profile
+  static final String profile = 'profile';
 }

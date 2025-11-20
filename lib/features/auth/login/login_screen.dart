@@ -59,11 +59,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     context: context,
                     barrierDismissible: false,
                     builder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator(color: AppColors.yellowColor,)),
                   );
                 } else if (state is LoginSuccess) {
                   Navigator.pop(context);
-                  Navigator.pushReplacementNamed(context, AppRoutes.homeRoute);
+                  Navigator.pushReplacementNamed(context, AppRoutes.mainLayoutRoute);
                 } else if (state is LoginError) {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -95,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           CustomTextFormField(
                             controller: _emailController,
                             hintText: locale.email,
+                            prefixIconWidget: Icon(Icons.email,color: Colors.white,),
                             prefixIcon: Icons.email_outlined,
                             validator: (value) {
                               if (value == null ||
@@ -109,13 +110,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           CustomTextFormField(
                             controller: _passwordController,
                             hintText: locale.password,
+                            prefixIconWidget: Icon(Icons.lock,color: Colors.white,),
                             prefixIcon: Icons.lock_outline,
                             obscureText: !_isPasswordVisible,
                             suffixIcon: IconButton(
                               icon: Icon(
                                 _isPasswordVisible
-                                    ? Icons.visibility_outlined
-                                    : Icons.visibility_off_outlined,
+                                    ? Icons.visibility_rounded
+                                    : Icons.visibility_off,
                                 color: AppColors.lightTextColor,
                               ),
                               onPressed: () {

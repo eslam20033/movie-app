@@ -43,7 +43,7 @@ class _SearchTabState extends State<SearchTab> {
                   children: [
                     _buildSearch(context),
                     Expanded(
-                      child: const Center(child: CircularProgressIndicator()),
+                      child: const Center(child: CircularProgressIndicator(color: AppColors.yellowColor,)),
                     ),
                   ],
                 );

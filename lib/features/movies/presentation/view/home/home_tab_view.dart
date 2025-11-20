@@ -43,7 +43,7 @@ class _HomeTabViewState extends State<HomeTabView> {
       child: BlocBuilder<MovieCubit, MovieState>(
         builder: (context, state) {
           if (state is MovieLoadingState) {
-            return Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator(color: AppColors.yellowColor,));
           } else if (state is MovieEmptyState) {
             return AlertDialogInternetConnection(
               text: state.message,
@@ -119,7 +119,6 @@ class _HomeTabViewState extends State<HomeTabView> {
                                         featured[index].mediumCoverImage ?? '',
                                     rating: featured[index].rating ?? 0,
                                     isFeatured: true,
-                                    // onTap: () {},
                                   ),
                                 );
                               },

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/api/api_const.dart';
+import 'package:flutter_application_1/core/app_const.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/routes/app_routes.dart';
 import '../../gen/assets.gen.dart';
@@ -80,10 +83,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
-  void _finishOnboarding() {
-    Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,6 +144,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         ],
       ),
     );
+  }
+  void _finishOnboarding() async {
+    final pref = await SharedPreferences.getInstance();
+    await pref.setBool(AppConst.onBoarding, true);
+    Navigator.pushReplacementNamed(context, AppRoutes.loginRoute);
   }
 
   Widget buildPage(OnboardingItem item) {

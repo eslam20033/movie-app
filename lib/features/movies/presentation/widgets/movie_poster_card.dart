@@ -24,7 +24,7 @@ class MoviePosterCard extends StatelessWidget {
     double width = isFeatured ? 200 : 120;
     double height = isFeatured ? 300 : 180;
 
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
           AppRoutes.filmDetails,

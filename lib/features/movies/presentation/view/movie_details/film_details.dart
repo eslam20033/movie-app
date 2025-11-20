@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
+import 'package:flutter_application_1/features/movies/presentation/view_model/add_favorite_cubit.dart';
 import 'package:flutter_application_1/features/movies/presentation/view_model/movie_details_cubit.dart';
 import 'package:flutter_application_1/features/movies/presentation/view_model/movie_suggestions_cubit.dart';
 import 'package:flutter_application_1/features/movies/presentation/widgets/movie_poster_card.dart';
@@ -21,9 +22,12 @@ class _FilmDetailsState extends State<FilmDetails> {
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>? ??
         {};
-    final int id = args['id'] ?? 0;
-    return BlocProvider(
-      create: (context) => MovieDetailsCubit()..fetchMovieDetails(id),
+    final int id = args['id'] ?? args['movieId'];
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => MovieDetailsCubit()..fetchMovieDetails(id)),
+        BlocProvider(create: (_) => AddFavoriteCubit()..checkIfFavorite(id)),
+      ],
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -35,9 +39,58 @@ class _FilmDetailsState extends State<FilmDetails> {
             child: Icon(Icons.arrow_back_ios, size: 30, color: Colors.white),
           ),
           actions: [
-            IconButton(
-              onPressed: () {},
-              icon: SvgPicture.asset(Assets.icon.save),
+            BlocConsumer<AddFavoriteCubit, AddFavoriteState>(
+              listener: (context, state) {
+                if (state is AddFavoriteSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Added Successfully'),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                } else if (state is AddFavoriteRemoved) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Remove Successfully'),
+                      backgroundColor: Colors.orange,
+                    ),
+                  );
+                } else if (state is AddFavoriteError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.errorMessage),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                }
+              },
+              builder: (context, state) {
+                final cubit = context.watch<AddFavoriteCubit>();
+                final movieDetails =
+                    context.watch<MovieDetailsCubit>().state
+                        is MovieDetailsSuccessState
+                    ? (context.watch<MovieDetailsCubit>().state
+                              as MovieDetailsSuccessState)
+                          .movieDetails
+                    : null;
+                return IconButton(
+                  onPressed: () {
+                    if (movieDetails == null) return;
+                    context.read<AddFavoriteCubit>().toggleFavorite(
+                      movieId: movieDetails.id ?? 0,
+                      name: movieDetails.title ?? '',
+                      rating: movieDetails.rating ?? 0.0,
+                      imageURL: movieDetails.mediumCoverImage ?? '',
+                      year: movieDetails.year.toString(),
+                    );
+                  },
+                  icon: Icon(
+                    cubit.isFavorite ? Icons.bookmark : Icons.bookmark_border_outlined,
+                    size: 35,
+                    color: AppColors.yellowColor,
+                  ),
+                );
+              },
             ),
           ],
         ),
@@ -48,7 +101,7 @@ class _FilmDetailsState extends State<FilmDetails> {
                 child: Text(state.error, style: TextStyle(color: Colors.white)),
               );
             } else if (state is MovieDetailsLoadingState) {
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator(color: AppColors.yellowColor,));
             } else if (state is MovieDetailsSuccessState) {
               final movieDetails = state.movieDetails;
               final List<String?> screenshots = [
@@ -261,7 +314,7 @@ class _FilmDetailsState extends State<FilmDetails> {
                                 );
                               } else {
                                 return Center(
-                                  child: CircularProgressIndicator(),
+                                  child: CircularProgressIndicator(color: AppColors.yellowColor,),
                                 );
                               }
                             },

@@ -120,7 +120,7 @@ class BrowseTab extends StatelessWidget {
             }).toList(),
           );
         }
-        return const Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator(color: AppColors.yellowColor,));
       },
     );
   }

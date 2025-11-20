@@ -11,8 +11,8 @@ class DioMovieHelper {
               baseUrl: ApiConst.movieBaseUrl,
               receiveDataWhenStatusError: true,
               headers: {'Content-Type': 'application/json'},
-              connectTimeout: const Duration(seconds: 15),
-              receiveTimeout: const Duration(seconds: 15),
+              connectTimeout: const Duration(seconds: 20),
+              receiveTimeout: const Duration(seconds: 20),
             ),
           )
           ..interceptors.add(

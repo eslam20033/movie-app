@@ -28,18 +28,20 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      scrollPadding: EdgeInsets.only(bottom: 150),
       onChanged: onChange != null ? (value) => onChange!(value) : null,
-      onFieldSubmitted:
-          onFieldSubmitted != null ? (value) => onFieldSubmitted!(value) : null,
+      onFieldSubmitted: onFieldSubmitted != null
+          ? (value) => onFieldSubmitted!(value)
+          : null,
       controller: controller,
       obscureText: obscureText,
       style: const TextStyle(color: Colors.white),
       validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(color: AppColors.lightTextColor),
+        hintStyle: const TextStyle(color: Colors.white),
         filled: true,
-        fillColor: filledColor,
+        fillColor: AppColors.greyColor,
         prefixIcon: prefixIconWidget,
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(

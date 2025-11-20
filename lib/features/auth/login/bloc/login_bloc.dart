@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/api/api_const.dart';
 import 'package:flutter_application_1/api/auth_service.dart';
+import 'package:flutter_application_1/model/auth_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../../core/storage.dart';
 import '../../../../model/register_response.dart';
 import 'login_event.dart';
 import 'login_state.dart';
@@ -19,8 +24,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<SignInEvent>((event, emit) async {
       emit(LoginLoading());
       try {
-        await AuthService.login(email: event.email, password: event.password);
-        emit(LoginSuccess());
+        final response = await AuthService.login(
+          email: event.email,
+          password: event.password,
+        );
+        final result = AuthModel.fromJson(response.data);
+        final String token = result.data ?? '';
+        await TokenManager.saveToken(token);
+        // ApiConst.token = result.data ?? '';
+        emit(LoginSuccess(token: result.data ?? ''));
       } on DioException catch (e) {
         if (e.response != null && e.response?.data != null) {
           final errorResponse = RegisterResponse.fromJson(e.response!.data);
@@ -51,21 +63,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<SignInWithGoogleEvent>((event, emit) async {
       emit(LoginLoading());
       try {
-        final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+        final googleUser = await _googleSignIn.signIn();
         if (googleUser == null) {
           emit(LoginInitial());
           return;
         }
-        final GoogleSignInAuthentication googleAuth =
-            await googleUser.authentication;
-        final OAuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleAuth.accessToken,
-          idToken: googleAuth.idToken,
+
+        final googleAuth = await googleUser.authentication;
+
+        final response = await AuthService.socialLogin(
+          idToken: googleAuth.idToken!,
         );
-        await _auth.signInWithCredential(credential);
-        emit(LoginSuccess());
+
+        final result = AuthModel.fromJson(response.data);
+        final String token = result.data ?? '';
+        await TokenManager.saveToken(token);
+        emit(LoginSuccess(token: token));
       } catch (e) {
-        emit(LoginError(e.toString()));
+        emit(LoginError("Google Sign-In failed: $e"));
       }
     });
   }

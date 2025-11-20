@@ -9,18 +9,20 @@ class AuthService {
     required String email,
     required String password,
     required String confirmPassword,
-    required String? phone,
-    required int? avaterId,
+    required String phone,
+    required int avaterId,
   }) async {
     final url = ApiEndPoints.register;
     return await DioHelper.postRegister(
       url: url,
-      name: name,
-      email: email,
-      password: password,
-      confirmPassword: confirmPassword,
-      phone: phone,
-      avaterId: avaterId,
+      data: {
+        'name': name,
+        'email': email,
+        'password': password,
+        'confirmPassword': confirmPassword,
+        'phone': phone,
+        'avaterId': avaterId,
+      },
     );
   }
 
@@ -31,8 +33,14 @@ class AuthService {
     final url = ApiEndPoints.login;
     return await DioHelper.postLogin(
       url: url,
-      email: email,
-      password: password,
+      data: {'email': email, 'password': password},
+    );
+  }
+
+  static Future<Response> socialLogin({required String idToken}) {
+    return DioHelper.postData(
+      data: {"idToken": idToken},
+      url: ApiEndPoints.login,
     );
   }
 }

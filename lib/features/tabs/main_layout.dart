@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/theme/app_colors.dart';
+import 'package:flutter_application_1/features/movies/presentation/view/profile/cubit/profile_cubit.dart';
+import 'package:flutter_application_1/features/movies/presentation/view_model/add_favorite_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../gen/assets.gen.dart';
 import '../movies/presentation/view/browse/browse_tab.dart';
@@ -16,7 +19,18 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   int currentIndex = 0;
-  List<Widget> tabs = [HomeTabView(), SearchTab(), BrowseTab(), ProfileTab()];
+  List<Widget> tabs = [
+    HomeTabView(),
+    SearchTab(),
+    BrowseTab(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ProfileCubit()..getUser()),
+        BlocProvider(create: (_) => AddFavoriteCubit()..getAllFavoriteData()),
+      ],
+      child: ProfileTab(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {

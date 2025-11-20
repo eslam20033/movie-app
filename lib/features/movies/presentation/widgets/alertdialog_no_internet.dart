@@ -26,7 +26,7 @@ class AlertDialogInternetConnection extends StatelessWidget {
         textAlign: TextAlign.center,
       ),
       content: Text(
-        'Check your internet connection and try again.',
+        'Check your internet connection Or server "yts.mx’s" DNS address could not be found and try again.',
         style: TextStyle(
           color: Colors.black,
           fontSize: 14,

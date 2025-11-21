@@ -68,7 +68,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     context: context,
                     barrierDismissible: false,
                     builder: (context) =>
-                        const Center(child: CircularProgressIndicator()),
+                        const Center(child: CircularProgressIndicator(color: AppColors.yellowColor,)),
                   );
                 } else if (state is ForgetPasswordSuccess) {
                   Navigator.pop(context);

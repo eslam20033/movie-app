@@ -3,35 +3,46 @@ import 'package:flutter_application_1/core/theme/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final TextEditingController? controller;
-  final Widget? suffixIcon;
+  final Widget? suffixIcon, prefixIconWidget;
   final bool obscureText;
+  final Color? filledColor;
   final String? Function(String?)? validator;
+  final void Function(String)? onChange, onFieldSubmitted;
 
   const CustomTextFormField({
     super.key,
     required this.hintText,
-    required this.prefixIcon,
+    this.prefixIcon,
     this.controller,
     this.suffixIcon,
     this.obscureText = false,
     this.validator,
+    this.prefixIconWidget,
+    this.filledColor,
+    this.onChange,
+    this.onFieldSubmitted,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      scrollPadding: EdgeInsets.only(bottom: 150),
+      onChanged: onChange != null ? (value) => onChange!(value) : null,
+      onFieldSubmitted: onFieldSubmitted != null
+          ? (value) => onFieldSubmitted!(value)
+          : null,
       controller: controller,
       obscureText: obscureText,
       style: const TextStyle(color: Colors.white),
       validator: validator,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(color: AppColors.lightTextColor),
+        hintStyle: const TextStyle(color: Colors.white),
         filled: true,
-        fillColor: AppColors.textFieldColor,
-        prefixIcon: Icon(prefixIcon, color: AppColors.lightTextColor),
+        fillColor: AppColors.greyColor,
+        prefixIcon: prefixIconWidget,
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),

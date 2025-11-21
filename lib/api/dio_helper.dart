@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 
+import '../core/storage.dart';
 import 'api_const.dart';
 
 class DioHelper {
@@ -11,10 +12,27 @@ class DioHelper {
         baseUrl: ApiConst.baseUrl,
         receiveDataWhenStatusError: true,
         headers: {'Content-Type': 'application/json'},
-        connectTimeout: const Duration(seconds: 15),
-        receiveTimeout: const Duration(seconds: 13),
+        connectTimeout: const Duration(seconds: 20),
+        receiveTimeout: const Duration(seconds: 20),
       ),
     );
+
+    dio!.interceptors.add(InterceptorsWrapper(
+      onRequest: (options, handler) async {
+        final token = await TokenManager.get();
+        if (token != null && token.isNotEmpty) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
+        return handler.next(options);
+      },
+      onError: (DioException e, handler) {
+        if (e.response?.statusCode == 401) {
+          TokenManager.delete();
+          // Navigator to login...
+        }
+        return handler.next(e);
+      },
+    ));
   }
 
   static Future<Response> getData({
@@ -24,45 +42,52 @@ class DioHelper {
     return await dio!.get(url, queryParameters: query);
   }
 
+  static Future<Response> postData({
+    required String url,
+    required Map<String, dynamic> data,
+  }) async {
+    return await dio!.post(url, data: data);
+  }
+
+  static Future<Response> updateData({
+    required String url,
+    Map<String, dynamic>? data,
+  }) async {
+    return await dio!.patch(url, data: data);
+  }
+
+  static Future<Response> deleteData({required String url}) async {
+    return await dio!.delete(url);
+  }
+
   static Future<Response> postLogin({
     required String url,
-    required String email,
-    required String password,
+    required Map<String, dynamic> data,
   }) async {
-    return await dio!.post(url, data: {'email': email, 'password': password});
+    return await dio!.post(url, data: data);
   }
 
   static Future<Response> postRegister({
     required String url,
-    required String name,
-    required String email,
-    required String password,
-    required String confirmPassword,
-    String? phone,
-    int? avaterId,
+    required Map<String, dynamic> data,
   }) async {
-    final data = {
-      'name': name,
-      'email': email,
-      'password': password,
-      'confirmPassword': confirmPassword,
-      if (phone != null) 'phone': phone,
-      if (avaterId != null) 'avaterId': avaterId,
-    };
-
     return await dio!.post(url, data: data);
   }
 
-  static Future<Response> patchResetPassword({
-    required String url,
-    required String token,
-    required String oldPassword,
-    required String newPassword,
-  }) async {
-    return await dio!.patch(
-      url,
-      data: {'oldPassword': oldPassword, 'newPassword': newPassword},
-      options: Options(headers: {'Authorization': 'Bearer $token'}),
-    );
-  }
+  // static Future<Response> getIsFavorite({
+  //   required String url,
+  //   required String token,
+  // }) async {
+  //   return await dio!.get(
+  //     url,
+  //   );
+  // }
+  // static Future<Response> getAllFavorite({
+  //   required String url,
+  //   required String token,
+  // }) async {
+  //   return await dio!.get(
+  //     url,
+  //   );
+  // }
 }

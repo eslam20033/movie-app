@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/app_const.dart';
 import '../../core/routes/app_routes.dart';
+import '../../core/storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,10 +16,28 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    _navigateToNextScreen();
+  }
 
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, AppRoutes.onboardingRoute);
-    });
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 3));
+    if (!mounted) return;
+
+    final prefs = await SharedPreferences.getInstance();
+    final bool onboardingDone = prefs.getBool(AppConst.onBoarding) ?? false;
+    final String? token = await TokenManager.get();
+
+    String nextRoute;
+
+    if (!onboardingDone) {
+      nextRoute = AppRoutes.onboardingRoute;
+    } else if (token == null || token.isEmpty) {
+      nextRoute = AppRoutes.loginRoute;
+    } else {
+      nextRoute = AppRoutes.mainLayoutRoute;
+    }
+
+    Navigator.pushReplacementNamed(context, nextRoute);
   }
 
   @override
@@ -51,7 +72,13 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-          Center(child: Image.asset('assets/splash_logo/splash1.png', width: 150, height: 150)),
+          Center(
+            child: Image.asset(
+              'assets/splash_logo/splash1.png',
+              width: 150,
+              height: 150,
+            ),
+          ),
         ],
       ),
     );
